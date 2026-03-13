@@ -8,9 +8,9 @@ function RecipeList() {
 
     const { data, loading, error } = useFetch("https://dummyjson.com/recipes")
 
+    const windowSize = useWindowResize()
     if (loading) return <h1>Fetching recipes!, please wait</h1>
 
-    const windowSize = useWindowResize()
 
     console.log(location);
     // console.log(resultFromCustomUseFetchHook);
@@ -18,7 +18,9 @@ function RecipeList() {
 
     return (
         <div>
-            <h1>Recipe List Page</h1>
+            <h1 style={{
+                color: windowSize.width < 768 ? "red" : "black"
+            }}>Recipe List Page</h1>
             <h3>Current window width is {windowSize.width} and current height is {windowSize.height}</h3>
             <ul>
                 {data?.recipes?.length > 0 ?
